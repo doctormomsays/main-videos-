@@ -26,6 +26,22 @@ export const EndCard: React.FC<{cta: string; theme: Theme}> = ({cta, theme}) => 
       <div style={{position: 'absolute', top: -220, right: -200, width: 640, height: 640, borderRadius: '50%', background: colors.blobA}} />
       <div style={{position: 'absolute', bottom: -260, left: -220, width: 700, height: 700, borderRadius: '50%', background: colors.blobB}} />
       <div style={{position: 'absolute', top: 300, left: 90, width: 36, height: 36, borderRadius: '50%', background: colors.dot}} />
+      {theme.decor?.map((d, i) => (
+        <div
+          key={i}
+          style={{
+            position: 'absolute',
+            top: d.top + Math.sin((frame + i * 20) / 14) * 10,
+            left: d.left,
+            fontSize: d.size,
+            color: d.color,
+            transform: `rotate(${d.rotate ?? 0}deg)`,
+            opacity: s(6 + i * 3),
+          }}
+        >
+          {d.char}
+        </div>
+      ))}
 
       <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 34, padding: '0 80px', textAlign: 'center'}}>
         <div style={{...rise(0), width: 210, height: 210, borderRadius: '50%', background: colors.badge, display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 14px 40px rgba(0,0,0,0.18)'}}>

@@ -43,12 +43,15 @@ export type Theme = {
     // 'pop' = snappy scale-in, 'float' = slow fade + gentle rise
     motion: 'pop' | 'float';
   };
-  hook: {weight: number; tilt: number; radius: number; motion: 'pop' | 'float'};
+  hook: {weight: number; tilt: number; radius: number; motion: 'pop' | 'float'; size?: number; ornament?: string};
+  // Small floating accents on the end card (hearts, sparkles).
+  decor?: {char: string; top: number; left: number; size: number; color: string; rotate?: number}[];
 };
 
 const montserrat = "'Montserrat', sans-serif";
 const playfair = "'Playfair Display', serif";
-const fredoka = "'Fredoka', sans-serif";
+const script = "'Dancing Script', cursive";
+const quicksand = "'Quicksand', sans-serif";
 
 export const BRANDS: Record<BrandId, Theme> = {
   doctormomsays: {
@@ -88,41 +91,49 @@ export const BRANDS: Record<BrandId, Theme> = {
     hook: {weight: 900, tilt: -1.5, radius: 28, motion: 'pop'},
   },
 
-  // Soft pastels, rounded type and slower motion for a calm feel.
+  // Girly, flirty, aesthetic: blush + rose + berry, handwritten script with soft
+  // rounded captions, slow float-in motion so it still feels soothing.
   honestlyworthit: {
     handle: '@honestlyworthit',
     displayName: 'honestly worth it',
-    tagline: 'real finds · real reviews · no fluff',
-    monogram: '✿',
-    defaultCta: 'Follow for more honest finds',
-    fonts: {caption: fredoka, hook: fredoka, title: fredoka, body: fredoka},
+    tagline: 'pretty finds · honest reviews',
+    monogram: '♡',
+    defaultCta: 'follow for more pretty little finds ♡',
+    fonts: {caption: quicksand, hook: script, title: script, body: quicksand},
     colors: {
-      endBg: '#FBF6EE',
-      blobA: '#E4DCF0',
-      blobB: '#D7E5D3',
-      dot: '#F2C4B0',
-      badge: '#B8A6D9',
-      badgeText: '#FFFFFF',
-      title: '#5B4B6E',
-      ink: '#5B4B6E',
-      handleBg: '#9FBF9A',
-      handleText: '#FFFFFF',
-      hookBg: 'rgba(251,246,238,0.94)',
-      hookText: '#5B4B6E',
-      hookBorder: '#E4DCF0',
-      hookAccent: '#F2C4B0',
+      endBg: 'linear-gradient(170deg, #FFF8F5 0%, #FCE8EC 55%, #F9DDE3 100%)',
+      blobA: '#F4C6D0',
+      blobB: '#F6E7D8',
+      dot: 'transparent',
+      badge: '#E08AA0',
+      badgeText: '#FFF8F5',
+      title: '#8E3B5A',
+      ink: '#8E3B5A',
+      handleBg: '#E08AA0',
+      handleText: '#FFF8F5',
+      hookBg: 'rgba(255,248,245,0.95)',
+      hookText: '#8E3B5A',
+      hookBorder: '#F4B6C2',
+      hookAccent: '#E08AA0',
     },
     captions: {
       uppercase: false,
       weight: 700,
-      size: 88,
+      size: 86,
       color: '#FFFFFF',
-      activeColor: '#5B4B6E',
+      activeColor: '#8E3B5A',
       stroke: null,
-      activePill: '#F6E3DC',
-      shadow: '0 4px 18px rgba(60,40,80,0.45)',
+      activePill: '#F9D3DC',
+      shadow: '0 3px 16px rgba(142,59,90,0.55)',
       motion: 'float',
     },
-    hook: {weight: 600, tilt: 0, radius: 60, motion: 'float'},
+    hook: {weight: 700, tilt: -2, radius: 60, motion: 'float', size: 96, ornament: '♡'},
+    decor: [
+      {char: '♡', top: 250, left: 120, size: 70, color: '#E08AA0', rotate: -14},
+      {char: '✦', top: 420, left: 900, size: 54, color: '#E8B4A0', rotate: 0},
+      {char: '♡', top: 1460, left: 860, size: 90, color: '#F4B6C2', rotate: 12},
+      {char: '✧', top: 1580, left: 170, size: 60, color: '#E08AA0', rotate: 0},
+      {char: '✦', top: 330, left: 760, size: 30, color: '#F4B6C2', rotate: 0},
+    ],
   },
 };

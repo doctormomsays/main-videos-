@@ -35,14 +35,20 @@ export const HookTitle: React.FC<{text: string; theme: Theme}> = ({text, theme})
           color: colors.hookText,
           fontFamily: theme.fonts.hook,
           fontWeight: hook.weight,
-          fontSize: text.length > 40 ? 64 : 78,
+          fontSize: (hook.size ?? 78) * (text.length > 40 ? 0.82 : 1),
           lineHeight: 1.12,
           textAlign: 'center',
           letterSpacing: -0.5,
         }}
       >
         {text}
-        <div style={{height: 10, width: 140, background: colors.hookAccent, borderRadius: 6, margin: '18px auto 0'}} />
+        {hook.ornament ? (
+          <div style={{color: colors.hookAccent, fontSize: 44, lineHeight: 1, marginTop: 10, letterSpacing: 18}}>
+            {`${hook.ornament} ${hook.ornament} ${hook.ornament}`}
+          </div>
+        ) : (
+          <div style={{height: 10, width: 140, background: colors.hookAccent, borderRadius: 6, margin: '18px auto 0'}} />
+        )}
       </div>
     </AbsoluteFill>
   );

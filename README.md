@@ -11,7 +11,7 @@ Put the clip in the folder for the page it's for. The folder picks the style:
 | Folder | Look |
 |---|---|
 | `clips/doctormomsays/` | Eucalyptus green / terracotta / honey, bold uppercase captions, punchy cuts |
-| `clips/honestlyworthit/` | Soft pastels, rounded Fredoka font, gentle float-in captions, calmer pacing |
+| `clips/honestlyworthit/` | Girly & aesthetic: blush/rose/berry, Dancing Script hook + Quicksand captions, hearts & sparkles, soft float-in, calmer pacing |
 
 On github.com, open the folder → **Add file → Upload files** → pick from Photos → **Commit changes**.
 Then tell Claude the file name and your hook (or ask Claude to write one).
