@@ -30,7 +30,7 @@ export const Reel: React.FC<ReelProps> = ({brand, video, videoDuration, words, h
         ) : null}
         {theme.videoDoodles ? <DoodleLayer spots={theme.videoDoodles} /> : null}
         <Captions words={words} theme={theme} />
-        {theme.editorial ? <EditorialHook text={hook} theme={theme} seconds={HOOK_SECONDS} /> : <HookTitle text={hook} theme={theme} />}
+        {theme.editorial ? <EditorialHook text={hook} theme={theme} seconds={theme.hook.seconds ?? HOOK_SECONDS} /> : <HookTitle text={hook} theme={theme} />}
         {notes?.length ? <Notes notes={notes} theme={theme} /> : null}
       </Sequence>
       <Sequence from={videoFrames}>

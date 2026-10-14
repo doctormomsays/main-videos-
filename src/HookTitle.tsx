@@ -6,7 +6,7 @@ import {DoodleLayer} from './Doodles';
 export const HookTitle: React.FC<{text: string; theme: Theme}> = ({text, theme}) => {
   const frame = useCurrentFrame();
   const {fps} = useVideoConfig();
-  const total = HOOK_SECONDS * fps;
+  const total = (theme.hook.seconds ?? HOOK_SECONDS) * fps;
   if (!text || frame >= total) return null;
 
   const {colors, hook} = theme;

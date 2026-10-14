@@ -57,6 +57,7 @@ export type Theme = {
     tilt: number;
     radius: number;
     motion: 'pop' | 'float';
+    seconds?: number; // how long the hook stays up (default HOOK_SECONDS)
     size?: number;
     ornament?: string;
     dashedInner?: string; // white dashed "sticker" outline inside the card
@@ -178,6 +179,7 @@ export const BRANDS: Record<BrandId, Theme> = {
       motion: 'float',
     },
     hook: {
+      seconds: 3,
       weight: 600,
       tilt: 0,
       radius: 0,
