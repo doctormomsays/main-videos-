@@ -1,0 +1,27 @@
+import React from 'react';
+import {AbsoluteFill, OffthreadVideo, Sequence, staticFile, useVideoConfig} from 'remotion';
+import {BRANDS} from './brands';
+import {Captions} from './Captions';
+import {EndCard} from './EndCard';
+import './fonts';
+import {HookTitle} from './HookTitle';
+import type {ReelProps} from './types';
+
+export const Reel: React.FC<ReelProps> = ({brand, video, videoDuration, words, hook, cta}) => {
+  const {fps} = useVideoConfig();
+  const theme = BRANDS[brand] ?? BRANDS.doctormomsays;
+  const videoFrames = Math.round(videoDuration * fps);
+
+  return (
+    <AbsoluteFill style={{backgroundColor: 'black'}}>
+      <Sequence durationInFrames={videoFrames}>
+        <OffthreadVideo src={staticFile(video)} style={{width: '100%', height: '100%', objectFit: 'cover'}} />
+        <Captions words={words} theme={theme} />
+        <HookTitle text={hook} theme={theme} />
+      </Sequence>
+      <Sequence from={videoFrames}>
+        <EndCard cta={cta} theme={theme} />
+      </Sequence>
+    </AbsoluteFill>
+  );
+};

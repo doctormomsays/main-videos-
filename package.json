@@ -1,0 +1,24 @@
+{
+  "name": "doctormomsays-reels",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Auto-edited 9:16 Instagram reels for @doctormomsays (Remotion + Whisper)",
+  "scripts": {
+    "studio": "remotion studio",
+    "render": "remotion render src/index.ts Reel",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@fontsource/fredoka": "5.2.5",
+    "@fontsource/montserrat": "5.2.5",
+    "@fontsource/playfair-display": "5.2.5",
+    "@remotion/cli": "4.0.531",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "remotion": "4.0.531"
+  },
+  "devDependencies": {
+    "@types/react": "18.3.12",
+    "typescript": "5.6.3"
+  }
+}
