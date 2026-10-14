@@ -60,7 +60,7 @@ export const Captions: React.FC<{words: Word[]; theme: Theme}> = ({words, theme}
           fontFamily: theme.fonts.caption,
           fontWeight: c.weight,
           fontSize: c.size,
-          lineHeight: 1.1,
+          lineHeight: c.lineHeight ?? 1.1,
           textAlign: 'center',
         }}
       >
@@ -87,7 +87,7 @@ export const Captions: React.FC<{words: Word[]; theme: Theme}> = ({words, theme}
                 background: active && c.activePill ? c.activePill : 'transparent',
                 borderRadius: 999,
                 padding: c.activePill ? '0 22px 6px' : 0,
-                WebkitTextStroke: c.stroke ? `14px ${c.stroke}` : undefined,
+                WebkitTextStroke: c.stroke ? `${c.strokeWidth ?? 14}px ${active && c.activeStroke ? c.activeStroke : c.stroke}` : undefined,
                 paintOrder: 'stroke fill',
                 textShadow: active && c.activePill ? 'none' : c.shadow,
                 boxShadow: active && c.activePill ? '0 6px 20px rgba(60,40,80,0.25)' : 'none',

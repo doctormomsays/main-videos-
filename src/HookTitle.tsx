@@ -1,6 +1,7 @@
 import React from 'react';
 import {AbsoluteFill, interpolate, spring, useCurrentFrame, useVideoConfig} from 'remotion';
 import {HOOK_SECONDS, type Theme} from './brands';
+import {DoodleLayer} from './Doodles';
 
 export const HookTitle: React.FC<{text: string; theme: Theme}> = ({text, theme}) => {
   const frame = useCurrentFrame();
@@ -39,8 +40,14 @@ export const HookTitle: React.FC<{text: string; theme: Theme}> = ({text, theme})
           lineHeight: 1.12,
           textAlign: 'center',
           letterSpacing: -0.5,
+          textShadow: hook.textShadow,
+          position: 'relative',
         }}
       >
+        {hook.dashedInner ? (
+          <div style={{position: 'absolute', inset: 12, border: `4px dashed ${hook.dashedInner}`, borderRadius: hook.radius - 12, pointerEvents: 'none'}} />
+        ) : null}
+        {hook.doodles ? <DoodleLayer spots={hook.doodles} /> : null}
         {text}
         {hook.ornament ? (
           <div style={{color: colors.hookAccent, fontSize: 44, lineHeight: 1, marginTop: 10, letterSpacing: 18}}>

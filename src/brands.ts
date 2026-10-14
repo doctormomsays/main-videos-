@@ -6,6 +6,8 @@ export const HEIGHT = 1920;
 export const HOOK_SECONDS = 2;
 export const END_CARD_SECONDS = 3;
 
+import type {DoodleSpot} from './Doodles';
+
 export type BrandId = 'doctormomsays' | 'honestlyworthit';
 
 export type Theme = {
@@ -38,19 +40,36 @@ export type Theme = {
     color: string;
     activeColor: string;
     stroke: string | null; // thick outline (punchy) or null (soft shadow)
+    strokeWidth?: number;
+    activeStroke?: string;
+    lineHeight?: number;
     activePill: string | null; // soft highlight behind the active word
     shadow: string;
     // 'pop' = snappy scale-in, 'float' = slow fade + gentle rise
     motion: 'pop' | 'float';
   };
-  hook: {weight: number; tilt: number; radius: number; motion: 'pop' | 'float'; size?: number; ornament?: string};
-  // Small floating accents on the end card (hearts, sparkles).
-  decor?: {char: string; top: number; left: number; size: number; color: string; rotate?: number}[];
+  hook: {
+    weight: number;
+    tilt: number;
+    radius: number;
+    motion: 'pop' | 'float';
+    size?: number;
+    ornament?: string;
+    dashedInner?: string; // white dashed "sticker" outline inside the card
+    textShadow?: string;
+    doodles?: DoodleSpot[]; // positioned relative to the card
+  };
+  titleShadow?: string;
+  handleBorder?: string;
+  // White outline frame around the footage + doodles in the corners.
+  videoFrame?: {color: string; inset: number; width: number; radius: number};
+  videoDoodles?: DoodleSpot[];
+  endDoodles?: DoodleSpot[];
 };
 
 const montserrat = "'Montserrat', sans-serif";
 const playfair = "'Playfair Display', serif";
-const script = "'Dancing Script', cursive";
+const pacifico = "'Pacifico', cursive";
 const quicksand = "'Quicksand', sans-serif";
 
 export const BRANDS: Record<BrandId, Theme> = {
@@ -91,49 +110,80 @@ export const BRANDS: Record<BrandId, Theme> = {
     hook: {weight: 900, tilt: -1.5, radius: 28, motion: 'pop'},
   },
 
-  // Girly, flirty, aesthetic: blush + rose + berry, handwritten script with soft
-  // rounded captions, slow float-in motion so it still feels soothing.
+  // Girly, flirty, aesthetic: bubblegum pink + butter yellow + lots of white,
+  // flirty script type, white outline doodles. Motion stays slow and soothing.
   honestlyworthit: {
     handle: '@honestlyworthit',
     displayName: 'honestly worth it',
     tagline: 'pretty finds · honest reviews',
     monogram: '♡',
     defaultCta: 'follow for more pretty little finds ♡',
-    fonts: {caption: quicksand, hook: script, title: script, body: quicksand},
+    fonts: {caption: pacifico, hook: pacifico, title: pacifico, body: quicksand},
     colors: {
-      endBg: 'linear-gradient(170deg, #FFF8F5 0%, #FCE8EC 55%, #F9DDE3 100%)',
-      blobA: '#F4C6D0',
-      blobB: '#F6E7D8',
+      endBg: 'linear-gradient(165deg, #FF9EC4 0%, #FFB6D0 50%, #FFE38A 100%)',
+      blobA: 'rgba(255,255,255,0.35)',
+      blobB: 'rgba(255,227,138,0.85)',
       dot: 'transparent',
-      badge: '#E08AA0',
-      badgeText: '#FFF8F5',
-      title: '#8E3B5A',
-      ink: '#8E3B5A',
-      handleBg: '#E08AA0',
-      handleText: '#FFF8F5',
-      hookBg: 'rgba(255,248,245,0.95)',
-      hookText: '#8E3B5A',
-      hookBorder: '#F4B6C2',
-      hookAccent: '#E08AA0',
+      badge: '#FFFFFF',
+      badgeText: '#FF5C93',
+      title: '#FFFFFF',
+      ink: '#FFFFFF',
+      handleBg: '#FFE066',
+      handleText: '#E8447A',
+      hookBg: '#FF8FB8',
+      hookText: '#FFFFFF',
+      hookBorder: '#FFFFFF',
+      hookAccent: '#FFE066',
     },
+    titleShadow: '0 4px 0 #E8447A, 0 10px 30px rgba(232,68,122,0.4)',
+    handleBorder: '#FFFFFF',
     captions: {
       uppercase: false,
-      weight: 700,
-      size: 86,
+      weight: 400,
+      size: 92,
       color: '#FFFFFF',
-      activeColor: '#8E3B5A',
-      stroke: null,
-      activePill: '#F9D3DC',
-      shadow: '0 3px 16px rgba(142,59,90,0.55)',
+      activeColor: '#FFE066',
+      stroke: '#FF5C93',
+      strokeWidth: 12,
+      activeStroke: '#E8447A',
+      activePill: null,
+      shadow: '0 6px 18px rgba(232,68,122,0.45)',
+      lineHeight: 1.45,
       motion: 'float',
     },
-    hook: {weight: 700, tilt: -2, radius: 60, motion: 'float', size: 96, ornament: '♡'},
-    decor: [
-      {char: '♡', top: 250, left: 120, size: 70, color: '#E08AA0', rotate: -14},
-      {char: '✦', top: 420, left: 900, size: 54, color: '#E8B4A0', rotate: 0},
-      {char: '♡', top: 1460, left: 860, size: 90, color: '#F4B6C2', rotate: 12},
-      {char: '✧', top: 1580, left: 170, size: 60, color: '#E08AA0', rotate: 0},
-      {char: '✦', top: 330, left: 760, size: 30, color: '#F4B6C2', rotate: 0},
+    hook: {
+      weight: 400,
+      tilt: -2.5,
+      radius: 46,
+      motion: 'float',
+      size: 80,
+      dashedInner: '#FFFFFF',
+      textShadow: '0 4px 0 #E8447A',
+      doodles: [
+        {name: 'sparkle', top: -60, left: -50, size: 90, color: '#FFE066', rotate: -10},
+        {name: 'heart', top: -40, left: 880, size: 80, rotate: 14},
+        {name: 'squiggle', top: 250, left: 700, size: 120, color: '#FFE066'},
+      ],
+    },
+    videoFrame: {color: '#FFFFFF', inset: 34, width: 7, radius: 56},
+    videoDoodles: [
+      {name: 'heart', top: 70, left: 60, size: 96, rotate: -14},
+      {name: 'sparkle', top: 90, left: 930, size: 70, color: '#FFE066'},
+      {name: 'star', top: 640, left: 950, size: 70, rotate: 12},
+      {name: 'dots', top: 800, left: 40, size: 80},
+      {name: 'flower', top: 1710, left: 70, size: 110, rotate: 8},
+      {name: 'bow', top: 1700, left: 900, size: 110, rotate: -6},
+      {name: 'sparkle', top: 1620, left: 260, size: 46, color: '#FFE066'},
+    ],
+    endDoodles: [
+      {name: 'heart', top: 170, left: 90, size: 120, rotate: -12},
+      {name: 'sparkle', top: 240, left: 850, size: 100},
+      {name: 'loop', top: 560, left: 760, size: 150, rotate: 10},
+      {name: 'star', top: 1350, left: 110, size: 110, rotate: -8},
+      {name: 'flower', top: 1500, left: 820, size: 140},
+      {name: 'squiggle', top: 1640, left: 360, size: 170},
+      {name: 'bow', top: 520, left: 110, size: 110, rotate: -10},
+      {name: 'dots', top: 1180, left: 880, size: 100},
     ],
   },
 };
