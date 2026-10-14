@@ -43,6 +43,10 @@ export type Theme = {
     strokeWidth?: number;
     activeStroke?: string;
     lineHeight?: number;
+    letterSpacing?: string;
+    maxWords?: number;
+    maxChars?: number;
+    bottom?: number; // distance of the caption block from the bottom edge
     activePill: string | null; // soft highlight behind the active word
     shadow: string;
     // 'pop' = snappy scale-in, 'float' = slow fade + gentle rise
@@ -59,6 +63,11 @@ export type Theme = {
     textShadow?: string;
     doodles?: DoodleSpot[]; // positioned relative to the card
   };
+  // Magazine-style hook (see EditorialHook.tsx). When set, replaces the card hook.
+  editorial?: {
+    fonts: {sans: string; serif: string; script: string; pinkScript: string};
+    colors: {big: string; kicker: string; script: string; scriptGlow: string; pink: string; pinkGlow: string; outline: string};
+  };
   titleShadow?: string;
   handleBorder?: string;
   // White outline frame around the footage + doodles in the corners.
@@ -70,7 +79,9 @@ export type Theme = {
 const montserrat = "'Montserrat', sans-serif";
 const playfair = "'Playfair Display', serif";
 const pacifico = "'Pacifico', cursive";
-const quicksand = "'Quicksand', sans-serif";
+const inter = "'Inter', sans-serif";
+const instrument = "'Instrument Serif', serif";
+const greatVibes = "'Great Vibes', cursive";
 
 export const BRANDS: Record<BrandId, Theme> = {
   doctormomsays: {
@@ -110,70 +121,75 @@ export const BRANDS: Record<BrandId, Theme> = {
     hook: {weight: 900, tilt: -1.5, radius: 28, motion: 'pop'},
   },
 
-  // Girly, flirty, aesthetic: bubblegum pink + butter yellow + lots of white,
-  // flirty script type, white outline doodles. Motion stays slow and soothing.
+  // Girly, flirty, aesthetic, after Priya's reference reels: text sits straight on
+  // the video (no boxes), tight sans + italic serif + handwritten script, pale
+  // butter yellow and pink with white outline glow, tiny lowercase captions.
   honestlyworthit: {
     handle: '@honestlyworthit',
     displayName: 'honestly worth it',
     tagline: 'pretty finds · honest reviews',
     monogram: '♡',
-    defaultCta: 'follow for more pretty little finds ♡',
-    fonts: {caption: pacifico, hook: pacifico, title: pacifico, body: quicksand},
+    defaultCta: 'follow for more pretty little finds 🎀',
+    fonts: {caption: inter, hook: inter, title: instrument, body: inter},
+    editorial: {
+      fonts: {sans: inter, serif: instrument, script: greatVibes, pinkScript: pacifico},
+      colors: {
+        big: '#FBF3A6',
+        kicker: '#FFFFFF',
+        script: '#FFFFFF',
+        scriptGlow: 'rgba(255,182,213,0.9)',
+        pink: '#FF9EC8',
+        pinkGlow: 'rgba(255,158,200,0.8)',
+        outline: '#FFFFFF',
+      },
+    },
     colors: {
-      endBg: 'linear-gradient(165deg, #FF9EC4 0%, #FFB6D0 50%, #FFE38A 100%)',
+      endBg: 'linear-gradient(165deg, #FFB6D0 0%, #FFD1E0 50%, #FBF3A6 100%)',
       blobA: 'rgba(255,255,255,0.35)',
-      blobB: 'rgba(255,227,138,0.85)',
+      blobB: 'rgba(251,243,166,0.9)',
       dot: 'transparent',
       badge: '#FFFFFF',
-      badgeText: '#FF5C93',
+      badgeText: '#FF7FB2',
       title: '#FFFFFF',
       ink: '#FFFFFF',
-      handleBg: '#FFE066',
-      handleText: '#E8447A',
-      hookBg: '#FF8FB8',
-      hookText: '#FFFFFF',
-      hookBorder: '#FFFFFF',
-      hookAccent: '#FFE066',
+      handleBg: '#FBF3A6',
+      handleText: '#E0558F',
+      hookBg: 'transparent',
+      hookText: '#FBF3A6',
+      hookBorder: 'transparent',
+      hookAccent: '#FF9EC8',
     },
-    titleShadow: '0 4px 0 #E8447A, 0 10px 30px rgba(232,68,122,0.4)',
+    titleShadow: '0 4px 0 #E0558F, 0 10px 30px rgba(224,85,143,0.4)',
     handleBorder: '#FFFFFF',
     captions: {
       uppercase: false,
-      weight: 400,
-      size: 92,
+      weight: 600,
+      size: 62,
       color: '#FFFFFF',
-      activeColor: '#FFE066',
-      stroke: '#FF5C93',
-      strokeWidth: 12,
-      activeStroke: '#E8447A',
+      activeColor: '#FFC2DD',
+      stroke: null,
       activePill: null,
-      shadow: '0 6px 18px rgba(232,68,122,0.45)',
-      lineHeight: 1.45,
+      shadow: '0 2px 10px rgba(0,0,0,0.55)',
+      lineHeight: 1.05,
+      letterSpacing: '-0.05em',
+      maxWords: 5,
+      maxChars: 26,
+      bottom: 760,
       motion: 'float',
     },
     hook: {
-      weight: 400,
-      tilt: -2.5,
-      radius: 46,
+      weight: 600,
+      tilt: 0,
+      radius: 0,
       motion: 'float',
-      size: 80,
-      dashedInner: '#FFFFFF',
-      textShadow: '0 4px 0 #E8447A',
       doodles: [
-        {name: 'sparkle', top: -60, left: -50, size: 90, color: '#FFE066', rotate: -10},
-        {name: 'heart', top: -40, left: 880, size: 80, rotate: 14},
-        {name: 'squiggle', top: 250, left: 700, size: 120, color: '#FFE066'},
+        {name: 'sparkle', top: -10, left: -40, size: 70, color: '#FBF3A6', rotate: -10},
+        {name: 'heart', top: 20, left: 860, size: 64, rotate: 14},
       ],
     },
-    videoFrame: {color: '#FFFFFF', inset: 34, width: 7, radius: 56},
     videoDoodles: [
-      {name: 'heart', top: 70, left: 60, size: 96, rotate: -14},
-      {name: 'sparkle', top: 90, left: 930, size: 70, color: '#FFE066'},
-      {name: 'star', top: 640, left: 950, size: 70, rotate: 12},
-      {name: 'dots', top: 800, left: 40, size: 80},
-      {name: 'flower', top: 1710, left: 70, size: 110, rotate: 8},
-      {name: 'bow', top: 1700, left: 900, size: 110, rotate: -6},
-      {name: 'sparkle', top: 1620, left: 260, size: 46, color: '#FFE066'},
+      {name: 'sparkle', top: 1240, left: 90, size: 52, color: '#FBF3A6'},
+      {name: 'heart', top: 1290, left: 900, size: 58, rotate: 12},
     ],
     endDoodles: [
       {name: 'heart', top: 170, left: 90, size: 120, rotate: -12},

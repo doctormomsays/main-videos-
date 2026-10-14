@@ -1,4 +1,5 @@
 import type {BrandId} from './brands';
+import type {Note} from './EditorialHook';
 
 export type Word = {
   text: string;
@@ -13,4 +14,5 @@ export type ReelProps = {
   words: Word[];
   hook: string;
   cta: string; // empty = brand default
+  notes?: Note[]; // optional mid-video section titles
 };

@@ -11,7 +11,7 @@ Put the clip in the folder for the page it's for. The folder picks the style:
 | Folder | Look |
 |---|---|
 | `clips/doctormomsays/` | Eucalyptus green / terracotta / honey, bold uppercase captions, punchy cuts |
-| `clips/honestlyworthit/` | Girly & flirty: bubblegum pink + butter yellow + white, Pacifico script hook and captions, white outline frame and wiggly white doodles, soft float-in, calmer pacing |
+| `clips/honestlyworthit/` | Girly, flirty, aesthetic (from reference reels): text straight on the video, tight sans + italic serif + handwritten script, butter yellow + pink with white outline glow, tiny lowercase captions, a few white doodles |
 
 On github.com, open the folder → **Add file → Upload files** → pick from Photos → **Commit changes**.
 Then tell Claude the file name and your hook (or ask Claude to write one).
@@ -24,6 +24,21 @@ scripts/make_reel.sh clips/doctormomsays/my-clip.mp4 "Hook title" ["End-card lin
 
 Output: `out/<brand>-<clip>-reel.mp4`. The end-card line defaults per brand.
 For hard-to-catch accents use a bigger model: `WHISPER_MODEL=medium scripts/make_reel.sh ...`
+
+## honestlyworthit hook styling
+
+Write the hook as lines separated by ` / `. A marker on each line picks its look:
+
+| Write | Looks like |
+|---|---|
+| `^3 signs to look for` | small white kicker, curved in an arc |
+| `_is your baby_` | thin handwritten script that types itself out |
+| `~ready~` | bold pink script with a white outline glow |
+| `*for solids?*` | big butter-yellow italic serif |
+| `how to` | huge tight butter-yellow sans |
+
+Emoji can follow any line: `*for solids?* 🎀`.
+Optional section titles mid-video ("step one" + a subline) go in `notes` in the clip's `props.json`.
 
 ## Where to change things
 

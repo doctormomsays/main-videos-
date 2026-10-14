@@ -8,15 +8,15 @@ const MAX_CHARS_PER_PAGE = 18;
 
 // Group words into short "pages" so each screen holds 1-3 words.
 // A new page also starts after a sentence ends or a noticeable pause.
-const paginate = (words: Word[]): Word[][] => {
+const paginate = (words: Word[], maxWords: number, maxChars: number): Word[][] => {
   const pages: Word[][] = [];
   let current: Word[] = [];
   for (const w of words) {
     const prev = current[current.length - 1];
     const chars = current.reduce((n, x) => n + x.text.length + 1, 0) + w.text.length;
     const breakHere =
-      current.length >= MAX_WORDS_PER_PAGE ||
-      chars > MAX_CHARS_PER_PAGE ||
+      current.length >= maxWords ||
+      chars > maxChars ||
       (prev && /[.!?,]$/.test(prev.text)) ||
       (prev && w.start - prev.end > 0.35);
     if (current.length && breakHere) {
@@ -39,7 +39,10 @@ export const Captions: React.FC<{words: Word[]; theme: Theme}> = ({words, theme}
   const frame = useCurrentFrame();
   const {fps} = useVideoConfig();
   const t = frame / fps;
-  const pages = React.useMemo(() => paginate(words), [words]);
+  const pages = React.useMemo(
+    () => paginate(words, c.maxWords ?? MAX_WORDS_PER_PAGE, c.maxChars ?? MAX_CHARS_PER_PAGE),
+    [words, c.maxWords, c.maxChars],
+  );
 
   const page = pages.find((p, i) => {
     const next = pages[i + 1];
@@ -49,17 +52,18 @@ export const Captions: React.FC<{words: Word[]; theme: Theme}> = ({words, theme}
   if (!page) return null;
 
   return (
-    <AbsoluteFill style={{justifyContent: 'flex-end', alignItems: 'center', paddingBottom: 520}}>
+    <AbsoluteFill style={{justifyContent: 'flex-end', alignItems: 'center', paddingBottom: c.bottom ?? 520}}>
       <div
         style={{
           display: 'flex',
           flexWrap: 'wrap',
           justifyContent: 'center',
-          gap: c.activePill ? '6px 10px' : '0 26px',
+          gap: c.activePill ? '6px 10px' : `0 ${Math.round(c.size * 0.27)}px`,
           maxWidth: 940,
           fontFamily: theme.fonts.caption,
           fontWeight: c.weight,
           fontSize: c.size,
+          letterSpacing: c.letterSpacing,
           lineHeight: c.lineHeight ?? 1.1,
           textAlign: 'center',
         }}
