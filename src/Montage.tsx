@@ -9,7 +9,7 @@ import type {MontageProps, MontageText} from './types';
 // lines that fade in and out inside the 9:16 safe zone (clear of the top 250px
 // and bottom 400px), with optional doodles that fade with each line.
 // Lines split on " / " and take the editorial markers, scaled down:
-//   *serif*  butter-yellow italic serif   ~pink~  pink script, white glow
+//   *serif*  butter-yellow italic serif   ~pink~  white script, pink outline + glow
 //   _script_ white script, pink glow      plain   small tight sans
 const TEXT_TOP = 1220;
 const TEXT_FADE = 10;
@@ -26,7 +26,7 @@ const LinePart: React.FC<{raw: string}> = ({raw}) => {
   }
   if (m?.[1] === '~') {
     return (
-      <div style={{fontFamily: e.fonts.pinkScript, fontSize: 66, lineHeight: 1.3, color: e.colors.pink, WebkitTextStroke: `7px ${e.colors.outline}`, paintOrder: 'stroke fill', textShadow: `0 0 16px ${e.colors.outline}, 0 0 30px ${e.colors.pinkGlow}`}}>
+      <div style={{fontFamily: e.fonts.pinkScript, fontSize: 66, lineHeight: 1.3, color: '#FFFFFF', WebkitTextStroke: `6px ${e.colors.pink}`, paintOrder: 'stroke fill', textShadow: `0 0 14px ${e.colors.pinkGlow}, 0 0 28px ${e.colors.pinkGlow}, 0 3px 10px rgba(0,0,0,0.45)`}}>
         {text}
       </div>
     );
