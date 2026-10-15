@@ -8,31 +8,362 @@
   "musicNote": "MUSIC SLOT: no licensed track in the repo yet. Drop one in public/work/<name>/music.mp3 and set \"music\": \"music.mp3\" (plays at musicVolume under the natural sound).",
   "musicVolume": 0.18,
   "shots": [
-    {"section": "01_hook",     "clip": "IMG_3648", "in": 38.0, "dur": 3.0,  "what": "wand up to the top of the curtain, backlit"},
-    {"section": "02_unbox",    "clip": "IMG_3446", "in": 0.3,  "dur": 2.5,  "what": "dyson logo on the box"},
-    {"section": "02_unbox",    "clip": "IMG_3448", "in": 10.8, "dur": 2.5,  "what": "hands tearing the tape open"},
-    {"section": "03_parts",    "clip": "IMG_3453", "in": 2.5,  "dur": 6.0,  "what": "all parts laid out, slow pan to the body"},
-    {"section": "04_attach",   "clip": "IMG_3646", "in": 56.5, "dur": 7.0,  "what": "attaching the triangular curtain head, clicks"},
-    {"section": "05_switchon", "clip": "IMG_3647", "in": 39.6, "dur": 2.0,  "what": "plug into the wall socket"},
-    {"section": "05_switchon", "clip": "IMG_3648", "in": 8.3,  "dur": 2.0,  "what": "switch on at the body, hum starts"},
-    {"section": "06_curtain",  "clip": "IMG_3648", "in": 11.6, "dur": 3.5,  "what": "take 1: top of the curtain"},
-    {"section": "06_curtain",  "clip": "IMG_3648", "in": 20.4, "dur": 3.2,  "what": "take 2: reaching to the top, back view", "alt": {"clip": "IMG_3649", "in": 70.6, "what": "take 2 alt: grey curtain, side profile shows"}},
-    {"section": "06_curtain",  "clip": "IMG_3648", "in": 29.6, "dur": 3.0,  "what": "take 3: middle"},
-    {"section": "06_curtain",  "clip": "IMG_3648", "in": 43.4, "dur": 3.3,  "what": "take 4: low sweep near the sill"},
-    {"section": "07_end",      "clip": "IMG_3649", "in": 4.0,  "dur": 4.0,  "what": "still wide shot of the curtains, vacuum parked"}
+    {
+      "section": "01_hook",
+      "clip": "IMG_3648",
+      "in": 38.0,
+      "dur": 3.0,
+      "what": "wand up to the top of the curtain, backlit"
+    },
+    {
+      "section": "02_unbox",
+      "clip": "IMG_3446",
+      "in": 0.3,
+      "dur": 2.5,
+      "what": "dyson logo on the box"
+    },
+    {
+      "section": "02_unbox",
+      "clip": "IMG_3448",
+      "in": 10.8,
+      "dur": 2.5,
+      "what": "hands tearing the tape open"
+    },
+    {
+      "section": "03_parts",
+      "clip": "IMG_3453",
+      "in": 2.5,
+      "dur": 6.0,
+      "what": "all parts laid out, slow pan to the body"
+    },
+    {
+      "section": "04_attach",
+      "clip": "IMG_3646",
+      "in": 56.5,
+      "dur": 7.0,
+      "what": "attaching the triangular curtain head, clicks"
+    },
+    {
+      "section": "05_switchon",
+      "clip": "IMG_3647",
+      "in": 39.6,
+      "dur": 2.0,
+      "what": "plug into the wall socket"
+    },
+    {
+      "section": "05_switchon",
+      "clip": "IMG_3648",
+      "in": 8.3,
+      "dur": 2.0,
+      "what": "switch on at the body, hum starts"
+    },
+    {
+      "section": "06_curtain",
+      "clip": "IMG_3648",
+      "in": 11.6,
+      "dur": 3.5,
+      "what": "take 1: top of the curtain"
+    },
+    {
+      "section": "06_curtain",
+      "clip": "IMG_3648",
+      "in": 20.4,
+      "dur": 3.2,
+      "what": "take 2: reaching to the top, back view",
+      "alt": {
+        "clip": "IMG_3649",
+        "in": 70.6,
+        "what": "take 2 alt: grey curtain, side profile shows"
+      }
+    },
+    {
+      "section": "06_curtain",
+      "clip": "IMG_3648",
+      "in": 29.6,
+      "dur": 3.0,
+      "what": "take 3: middle"
+    },
+    {
+      "section": "06_curtain",
+      "clip": "IMG_3648",
+      "in": 43.4,
+      "dur": 3.3,
+      "what": "take 4: low sweep near the sill"
+    },
+    {
+      "section": "07_end",
+      "clip": "IMG_3649",
+      "in": 4.0,
+      "dur": 4.0,
+      "what": "still wide shot of the curtains, vacuum parked"
+    }
   ],
   "texts": [
-    {"text": "the job I kept putting off for months", "start": 0.15, "end": 2.85},
-    {"text": "so I finally gave in",                  "start": 3.3,  "end": 7.7},
-    {"text": "everything that came in the box",       "start": 8.4,  "end": 13.6},
-    {"text": "there's a head just for curtains",      "start": 14.4, "end": 20.6},
-    {"text": "slow, quiet, oddly calming",            "start": 26.6, "end": 31.0},
-    {"text": "no taking them down, no washing",       "start": 32.6, "end": 37.0},
-    {"text": "one less thing on the list",            "start": 38.5, "end": 41.75}
+    {
+      "text": "the job I've been ghosting / *for months*",
+      "start": 0.15,
+      "end": 2.85,
+      "doodles": [
+        {
+          "name": "sparkle",
+          "top": 1150,
+          "left": 90,
+          "size": 64,
+          "rotate": -10,
+          "color": "#FBF3A6"
+        },
+        {
+          "name": "heart",
+          "top": 1360,
+          "left": 900,
+          "size": 58,
+          "rotate": 14,
+          "color": "#FFFFFF"
+        }
+      ]
+    },
+    {
+      "text": "so I finally / ~said yes~",
+      "start": 3.3,
+      "end": 7.7,
+      "doodles": [
+        {
+          "name": "heart",
+          "top": 1180,
+          "left": 820,
+          "size": 70,
+          "rotate": 12,
+          "color": "#FF9EC8"
+        },
+        {
+          "name": "sparkle",
+          "top": 1390,
+          "left": 120,
+          "size": 52,
+          "rotate": 0,
+          "color": "#FBF3A6"
+        },
+        {
+          "name": "dots",
+          "top": 300,
+          "left": 840,
+          "size": 90,
+          "rotate": 0,
+          "color": "#FFFFFF"
+        }
+      ]
+    },
+    {
+      "text": "_hello, gorgeous_ / everything that came in the box",
+      "start": 8.4,
+      "end": 13.6,
+      "doodles": [
+        {
+          "name": "sparkle",
+          "top": 1140,
+          "left": 150,
+          "size": 70,
+          "rotate": 0,
+          "color": "#FBF3A6"
+        },
+        {
+          "name": "bow",
+          "top": 1145,
+          "left": 830,
+          "size": 90,
+          "rotate": -8,
+          "color": "#FFFFFF"
+        },
+        {
+          "name": "star",
+          "top": 320,
+          "left": 110,
+          "size": 70,
+          "rotate": -10,
+          "color": "#FFFFFF"
+        }
+      ]
+    },
+    {
+      "text": "a head just for curtains? / *stop it*",
+      "start": 14.4,
+      "end": 20.6,
+      "doodles": [
+        {
+          "name": "loop",
+          "top": 1330,
+          "left": 820,
+          "size": 110,
+          "rotate": 10,
+          "color": "#FFFFFF"
+        },
+        {
+          "name": "heart",
+          "top": 1170,
+          "left": 110,
+          "size": 60,
+          "rotate": -12,
+          "color": "#FF9EC8"
+        },
+        {
+          "name": "sparkle",
+          "top": 330,
+          "left": 860,
+          "size": 64,
+          "rotate": 0,
+          "color": "#FBF3A6"
+        }
+      ]
+    },
+    {
+      "text": "this is how I / ~reset my space~",
+      "start": 21.2,
+      "end": 24.85,
+      "doodles": [
+        {
+          "name": "flower",
+          "top": 1150,
+          "left": 840,
+          "size": 96,
+          "rotate": 0,
+          "color": "#FFFFFF"
+        },
+        {
+          "name": "sparkle",
+          "top": 1380,
+          "left": 110,
+          "size": 56,
+          "rotate": 0,
+          "color": "#FBF3A6"
+        }
+      ]
+    },
+    {
+      "text": "slow, quiet, / *oddly calming*",
+      "start": 26.6,
+      "end": 31.0,
+      "doodles": [
+        {
+          "name": "squiggle",
+          "top": 1440,
+          "left": 380,
+          "size": 150,
+          "rotate": 0,
+          "color": "#FFFFFF"
+        },
+        {
+          "name": "sparkle",
+          "top": 1170,
+          "left": 860,
+          "size": 60,
+          "rotate": 0,
+          "color": "#FBF3A6"
+        },
+        {
+          "name": "heart",
+          "top": 1180,
+          "left": 130,
+          "size": 54,
+          "rotate": -10,
+          "color": "#FF9EC8"
+        }
+      ]
+    },
+    {
+      "text": "no taking them down, no washing / _we love that_",
+      "start": 32.6,
+      "end": 37.0,
+      "doodles": [
+        {
+          "name": "heart",
+          "top": 1330,
+          "left": 880,
+          "size": 64,
+          "rotate": 12,
+          "color": "#FF9EC8"
+        },
+        {
+          "name": "star",
+          "top": 1340,
+          "left": 90,
+          "size": 60,
+          "rotate": -8,
+          "color": "#FBF3A6"
+        },
+        {
+          "name": "dots",
+          "top": 320,
+          "left": 820,
+          "size": 90,
+          "rotate": 0,
+          "color": "#FFFFFF"
+        }
+      ]
+    },
+    {
+      "text": "one less thing on the list / ~bye, chores~",
+      "start": 38.5,
+      "end": 41.75,
+      "doodles": [
+        {
+          "name": "heart",
+          "top": 1150,
+          "left": 830,
+          "size": 84,
+          "rotate": 10,
+          "color": "#FF9EC8"
+        },
+        {
+          "name": "sparkle",
+          "top": 1160,
+          "left": 140,
+          "size": 70,
+          "rotate": 0,
+          "color": "#FBF3A6"
+        },
+        {
+          "name": "bow",
+          "top": 1400,
+          "left": 140,
+          "size": 80,
+          "rotate": -10,
+          "color": "#FFFFFF"
+        },
+        {
+          "name": "sparkle",
+          "top": 340,
+          "left": 870,
+          "size": 56,
+          "rotate": 0,
+          "color": "#FFFFFF"
+        }
+      ]
+    }
   ],
   "variants": {
-    "v2": {"shot": {"clip": "IMG_3447", "in": 1.5, "what": "logo on the box, slow push-in"},     "text": "unboxing the thing I said I didn't need"},
-    "v3": {"shot": {"clip": "IMG_3454", "in": 0.4, "what": "all-parts flat lay"},               "text": "a calm little unboxing for your feed"},
-    "v4": {"shot": {"clip": "IMG_3647", "in": 62.3, "what": "switch on at the body, hum starts"}, "text": "the sound of a Sunday reset"}
+    "v2": {
+      "shot": {
+        "clip": "IMG_3447",
+        "in": 1.5,
+        "what": "logo on the box, slow push-in"
+      },
+      "text": "unboxing the thing / I said I *didn't need*"
+    },
+    "v3": {
+      "shot": {
+        "clip": "IMG_3454",
+        "in": 0.4,
+        "what": "all-parts flat lay"
+      },
+      "text": "a calm little unboxing / ~for your feed~"
+    },
+    "v4": {
+      "shot": {
+        "clip": "IMG_3647",
+        "in": 62.3,
+        "what": "switch on at the body, hum starts"
+      },
+      "text": "the sound of a / *Sunday reset*"
+    }
   }
 }

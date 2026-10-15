@@ -1,3 +1,4 @@
+import type {DoodleSpot} from './Doodles';
 import type {BrandId} from './brands';
 import type {Note} from './EditorialHook';
 
@@ -18,7 +19,7 @@ export type ReelProps = {
 };
 
 export type MontageShot = {src: string; frames: number; what?: string};
-export type MontageText = {text: string; start: number; end: number}; // seconds on the reel timeline
+export type MontageText = {text: string; start: number; end: number; doodles?: DoodleSpot[]}; // seconds on the reel timeline
 
 export type MontageProps = {
   shots: MontageShot[]; // pre-graded clips in public/, each with fadeFrames of extra tail
