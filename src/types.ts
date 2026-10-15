@@ -16,3 +16,15 @@ export type ReelProps = {
   cta: string; // empty = brand default
   notes?: Note[]; // optional mid-video section titles
 };
+
+export type MontageShot = {src: string; frames: number; what?: string};
+export type MontageText = {text: string; start: number; end: number}; // seconds on the reel timeline
+
+export type MontageProps = {
+  shots: MontageShot[]; // pre-graded clips in public/, each with fadeFrames of extra tail
+  sections?: string[];
+  texts: MontageText[];
+  fadeFrames: number;
+  music: string | null; // optional bed under the natural sound, path inside public/
+  musicVolume: number;
+};

@@ -48,6 +48,26 @@ She gives the idea in plain words; you write the styled hook. Keep it short enou
 `notes` (optional, in props.json): `[{start, end, title, sub}]` in edited-timeline
 seconds for mid-video section titles like "step one". Get the times from `words`.
 
+## Multi-clip montages (no talking, e.g. UGC product b-roll)
+
+```bash
+scripts/make_montage.sh edits/<name>.json [v1 v1_notext v2 ...]
+# -> out/<name>/<name>_<version>.mp4 + out/<name>/sections/*.mp4 (clean, from v1_notext)
+```
+- The edit list (`edits/*.json`) holds the shots (clip, in-point, duration, section), the
+  text lines with times, hook `variants` (first shot + first line swapped), and an
+  optional `alt` per shot (renders as `v1_profile`). It's committed; the clips aren't.
+- `scripts/prep_montage.py` cuts and grades each shot (warm soft daylight, lifted
+  shadows), lifts natural sound by `gainDb`, and adds `fadeFrames` of tail for the
+  crossfade. `src/Montage.tsx` lays out shots + small lowercase lines in the safe zone
+  (clear of top 250px / bottom 400px). Loudness: two-pass linear loudnorm to -16 LUFS.
+- `music`: no licensed track yet. Put one in `public/work/<name>/` and set it in the edit list.
+- First example: `edits/dyson_curtain.json` (@honestlyworthit Dyson Big Ball, 42 s).
+  Raw clips were in Drive folder "claude edit clips"; the connector couldn't see it, so they
+  were pulled over drive.usercontent.google.com after she shared the folder by link and
+  allowed that domain in the environment's network settings.
+- Faceless brief: check head crops of every body shot; she shows her profile in IMG_3649.
+
 ## Getting her clips
 
 - **Google Drive (preferred, any length):** she uploads via the Drive app and tells
