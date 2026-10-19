@@ -63,3 +63,21 @@ Hook variants B and C get the same transitions and motion as main.
 
 QC every export with frame grabs: no face, text not cut off, nothing stretched, no black frames.
 Then send her a short summary plus a reshoot list.
+
+## Step 1 inspection (2026-10-19)
+Source: Drive folder `1e41IeNFPe1cWMu_sFkXfVseP_ZZngI6z` (link-shared; the Drive connector can't see it, so
+download via `drive.usercontent.google.com/download?id=<id>&export=download&confirm=t`). 28 unique clips, all
+portrait 1080x1920 30fps with audio (IMG_3603 is 720p). IMG_3441–3444 were uploaded 3x each (identical md5).
+No /music, no /sfx.
+
+- **Dyson (3441–3455): unboxing only.** Box shots, opening, unwrapping the canister (3452 @24–29 best reveal),
+  parts laid out (3453), static setup (3455). No sofa/mattress/rug/corner/bin footage.
+  Face: 3450 @54–55 (profile, cut). Legs/feet in 3450 @61–64.
+- **INVISEL:** wide stove 3597, can on stove 3600/3601, foam spray 3602 @17–23, 3603 (720p, spray @4–12 then static dwell),
+  3607 (7.6 min): glass-top wipe @20–80, grimy burner base @143–150, spray @151–154, wipe @160–170 & @240–260,
+  clean base @265–300 (same angle as @150, so wiperight before/after works), clean reassembled burner @430–457.
+  3609/3610 cooking on the stove, 3611 @0–3 dirty cloth. No face anywhere.
+- **Coffee/Deebot (3678, 3.6 min):** locked wide shot, she sits on the window seat. **Face visible throughout**
+  (profile; toward camera ~75–90, 107–119; walks to camera 209–213). Robot passes: small/far 25–52,
+  foreground 173–178 (best), mid-floor 192–199, re-enters 214–216. Faceless fix: crop `574:1020:x:900`
+  (feet + bench + floor), a 1.88x upscale; it looks fine. No cup+hands close-up exists.
