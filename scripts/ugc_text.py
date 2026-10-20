@@ -4,7 +4,7 @@ Same look as the Remotion preset (src/brands.ts, src/Doodles.tsx), drawn with Pi
 ffmpeg edits can use it. Line markup (lines split by " / "):
   ^kicker      small spaced sans
   _script_     white Great Vibes script
-  ~pink~       pink Pacifico script with a white outline glow
+  ~pink~       dusty-rose Pacifico script
   *serif*      butter-yellow Instrument Serif italic
   plain        tight bold lowercase sans
 """
@@ -15,13 +15,14 @@ HERE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 FONTS = os.path.join(HERE, "assets/fonts")
 INTER_BOLD = "/usr/share/fonts/opentype/inter/Inter-Bold.otf"
 INTER_SEMI = "/usr/share/fonts/opentype/inter/Inter-SemiBold.otf"
-PINK, BUTTER, WHITE = (255, 158, 200), (251, 243, 166), (255, 255, 255)
+# PINK is a dusty rose (Priya picked it over the bright #FF9EC8 for this reel style)
+PINK, BUTTER, WHITE = (236, 170, 188), (251, 243, 166), (255, 255, 255)
 W, H = 1080, 1920
 
 STYLES = {
     "kicker": dict(font=INTER_SEMI, size=40, fill=WHITE, track=6),
     "script": dict(font=os.path.join(FONTS, "GreatVibes-Regular.ttf"), size=124, fill=WHITE),
-    "pink": dict(font=os.path.join(FONTS, "Pacifico-Regular.ttf"), size=92, fill=PINK, outline=WHITE),
+    "pink": dict(font=os.path.join(FONTS, "Pacifico-Regular.ttf"), size=92, fill=PINK),
     "serif": dict(font=os.path.join(FONTS, "InstrumentSerif-Italic.ttf"), size=96, fill=BUTTER),
     "sans": dict(font=INTER_BOLD, size=70, fill=WHITE, track=-1),
 }
@@ -140,7 +141,7 @@ def card(text, path_fmt, doodles=(), top=300, frames=3):
     tight = Image.new("RGBA", (W, H), (40, 20, 30, 0))
     tight.putalpha(alpha.point(lambda a: int(a * 0.55)))
     halo = Image.alpha_composite(wide, tight.filter(ImageFilter.GaussianBlur(5)))
-    pink_glow = Image.new("RGBA", (W, H), PINK + (0,))
+    pink_glow = Image.new("RGBA", (W, H), (0, 0, 0, 0))
     pink_glow.putalpha(text_layer.getchannel("A").point(lambda a: int(a * 0.35)))
     pink_glow = pink_glow.filter(ImageFilter.GaussianBlur(22))
     # a big, very soft shade behind the whole block: invisible on dark shots, rescues bright windows

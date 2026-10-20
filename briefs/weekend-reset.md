@@ -111,3 +111,4 @@ Priya: flirtier font with doodles, calm/peaceful UGC feel, a better hook, storyt
   helper two: my stove → a little foam, one easy wipe → and all of this came right off (dirty cloth) →
   helper three: the floors, done while I sipped → slow saturday, reset done → honestly worth it 🎀
 - Calmer: hook 3.3 s, curtain/wipe speed 1.25x (was 1.5x), robot punch-in removed, warm soft grade.
+- Revision 3: pink lines and pink doodles switched to dusty rose (236,170,188), no white outline or pink glow (option B).
