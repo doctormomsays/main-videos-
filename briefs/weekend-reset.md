@@ -100,3 +100,14 @@ Priya's notes: better wipe after the foam; drop the stained-only clip after it; 
 - Wipe: 3607@243.8 and @249.8 (1.5x, cloth through the foam). Removed the 146→272 before/after wipe pair.
 - Clean hob: 3607@445 (motion-measured steady stretch 444–456; @440 had camera shake), no zoom.
 - End: 3649@3 Dyson resting on the floor under the curtains (locked shot), pull-out anchored to the bottom.
+
+### Revision 2 (main, 2026-10-20): honestlyworthit look + story
+Priya: flirtier font with doodles, calm/peaceful UGC feel, a better hook, storytelling throughout.
+- Text now drawn by `scripts/ugc_text.py` (same markup as the Remotion preset: ^kicker _script_ ~pink~ *serif*),
+  fonts in `assets/fonts/` (OFL, from google/fonts), white outline doodles that "boil" (3 frames at 6 fps),
+  soft rise-in, soft dark halo + blurred shade so pastel text reads on bright windows.
+- Story ("3 helpers"): 3 little helpers / that gave me / my saturdays back 🎀 → be honest, does yours look like
+  this too? → helper one: curtains, the job I always skip → no taking them down, just slow quiet passes →
+  helper two: my stove → a little foam, one easy wipe → and all of this came right off (dirty cloth) →
+  helper three: the floors, done while I sipped → slow saturday, reset done → honestly worth it 🎀
+- Calmer: hook 3.3 s, curtain/wipe speed 1.25x (was 1.5x), robot punch-in removed, warm soft grade.

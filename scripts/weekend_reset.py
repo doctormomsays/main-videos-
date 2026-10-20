@@ -13,6 +13,10 @@ cards, which are PNGs drawn with Pillow and faded in/out with alpha fades.
 import json, math, os, subprocess, sys
 from PIL import Image, ImageDraw, ImageFilter, ImageFont
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import ugc_text
+from ugc_text import BUTTER, PINK, WHITE
+
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CLIPS = os.path.join(ROOT, "clips/honestlyworthit/weekend_reset")
 OUT = os.path.join(ROOT, "out/weekend_reset")
@@ -27,25 +31,25 @@ def shot(clip, ss, dur, speed=1.0, motion=None, anchor=(0.5, 0.5), join="cut", w
     return dict(clip=clip, ss=ss, dur=dur, speed=speed, motion=motion or [], anchor=anchor,
                 join=join, what=what)
 
-HOOK = [shot("IMG_3678", 172.5, 2.6, motion=[("push", 1.0, 1.08)], anchor=(0.5, 0.7),
+HOOK = [shot("IMG_3678", 172.0, 3.3, motion=[("push", 1.0, 1.08)], anchor=(0.5, 0.7),
              what="coffee on the window seat, robot rolls in")]
 BEFORE = [shot("IMG_3597", 25.0, 2.2, join="fade", what="grimy burner close-up")]
 DYSON = [
     shot("IMG_3646", 59.0, 1.5, join="slideleft", what="curtain head attached"),
-    shot("IMG_3648", 11.5, 3.0, speed=1.5, what="reach to the top of the curtain"),
-    shot("IMG_3648", 20.5, 3.0, speed=1.5, what="second reach"),
-    shot("IMG_3648", 37.5, 3.0, speed=1.5, what="third reach"),
+    shot("IMG_3648", 11.5, 3.0, speed=1.25, what="reach to the top of the curtain"),
+    shot("IMG_3648", 20.5, 3.0, speed=1.25, what="second reach"),
+    shot("IMG_3648", 37.5, 3.0, speed=1.25, what="third reach"),
 ]
 INVISEL = [
     shot("IMG_3600", 8.3, 1.6, join="fade", what="can set on the stove"),
     shot("IMG_3607", 151.5, 1.6, what="foam burst on the burner base"),
     shot("IMG_3602", 17.0, 1.5, what="foam on the burner ring"),
-    shot("IMG_3607", 243.8, 3.0, speed=1.5, what="cloth wipes through the foam"),
-    shot("IMG_3607", 249.8, 3.0, speed=1.5, what="wiping round the burner"),
+    shot("IMG_3607", 243.8, 3.0, speed=1.25, what="cloth wipes through the foam"),
+    shot("IMG_3607", 249.8, 3.0, speed=1.25, what="wiping round the burner"),
     shot("IMG_3611", 0.0, 2.0, what="dirty cloth"),
 ]
 RETURN = [shot("IMG_3678", 191.8, 6.0, join="fade",
-               motion=[("push", 1.0, 1.03), ("punch", 2.6, 3.6, 1.15)], anchor=(0.6, 0.85),
+               motion=[("push", 1.0, 1.04)], anchor=(0.6, 0.85),
                what="robot crosses the floor")]
 AFTER = [
     shot("IMG_3607", 445.0, 3.0, join="fade", what="clean burner (tripod-steady stretch)"),
@@ -58,16 +62,34 @@ REVEAL_B = [
 ]
 BEFORE_C = [shot("IMG_3597", 25.0, 2.6, what="grimy burner close-up")]
 
-# (shots, text card for the section)
+# doodles: (name, anchor relative to the text block, size, rotation, colour)
+SP, HT, DT, BW, ST, SQ, LP = "sparkle", "heart", "dots", "bow", "star", "squiggle", "loop"
+# (shots, [(first shot index, styled text, doodles)]); see scripts/ugc_text.py for the markup
 SECTIONS = {
-    "hook": (HOOK, "Saturday reset. I'm not doing the floors."),
-    "before": (BEFORE, "The stove after a full week"),
-    "dyson": (DYSON, "Curtains: Dyson"),
-    "invisel": (INVISEL, "Stove: INVISEL"),
-    "return": (RETURN, "Floors? The robot's been at it all along"),
-    "after": (AFTER, "Saturday 11am. Reset done."),
-    "hook_B": (REVEAL_B, "This is what Saturday morning looks like now"),
-    "hook_C": (BEFORE_C, "Week's mess → 2 hours → done"),
+    "hook": (HOOK, [(0, "3 little helpers / _that gave me_ / ~my saturdays back~ 🎀",
+                     [(SP, (-0.06, 0.2), 72, 0, BUTTER), (HT, (1.07, 0.85), 60, 12, WHITE), (DT, (0.92, -0.08), 80, 0, WHITE)])]),
+    "before": (BEFORE, [(0, "^be honest / does yours look / *like this too?*",
+                         [(SQ, (0.5, 1.15), 150, 0, WHITE), (SP, (1.08, 0.1), 56, 0, BUTTER)])]),
+    "dyson": (DYSON, [(0, "^helper one / ~curtains~ / *the job I always skip*",
+                       [(HT, (-0.06, 0.45), 62, -12, PINK), (SP, (1.06, 0.3), 64, 0, BUTTER), (DT, (0.85, -0.1), 80, 0, WHITE)]),
+                      (2, "no taking them down / _just slow, quiet passes_",
+                       [(SP, (-0.05, 0.2), 58, 0, BUTTER), (HT, (1.05, 0.9), 54, 10, WHITE)])]),
+    "invisel": (INVISEL, [(0, "^helper two / ~my stove~",
+                           [(ST, (-0.12, 0.5), 64, -10, BUTTER), (SP, (1.12, 0.3), 60, 0, WHITE)]),
+                          (2, "_a little foam_ / *one easy wipe*",
+                           [(LP, (1.1, 0.75), 100, 10, WHITE), (SP, (-0.1, 0.2), 56, 0, BUTTER)]),
+                          (5, "and all of this / ~came right off~",
+                           [(HT, (1.07, 0.75), 64, 12, PINK), (SP, (-0.07, 0.2), 60, 0, BUTTER), (DT, (0.1, -0.15), 80, 0, WHITE)])]),
+    "return": (RETURN, [(0, "^helper three / ~the floors~ / *done while I sipped*",
+                         [(HT, (1.06, 0.55), 60, 12, PINK), (SP, (-0.06, 0.25), 66, 0, BUTTER), (DT, (0.88, -0.08), 80, 0, WHITE)])]),
+    "after": (AFTER, [(0, "slow saturday / *reset done*",
+                       [(SP, (-0.08, 0.3), 64, 0, BUTTER), (ST, (1.08, 0.7), 56, 10, WHITE)]),
+                      (1, "_honestly_ / ~worth it~ 🎀",
+                       [(HT, (-0.12, 0.6), 66, -12, PINK), (SP, (1.1, 0.2), 70, 0, BUTTER), (BW, (1.0, 1.15), 84, -8, WHITE)])]),
+    "hook_B": (REVEAL_B, [(0, "_this is what_ / ~saturday mornings~ / *look like now*",
+                           [(SP, (-0.06, 0.2), 70, 0, BUTTER), (HT, (1.06, 0.8), 60, 12, WHITE)])]),
+    "hook_C": (BEFORE_C, [(0, "*a week of mess* / _two hours later_ / ~all done~",
+                           [(SP, (-0.06, 0.2), 70, 0, BUTTER), (HT, (1.06, 0.8), 60, 12, PINK)])]),
 }
 BODY = ["before", "dyson", "invisel", "return", "after"]
 VERSIONS = {
@@ -119,7 +141,7 @@ def render_segment(s, name, plain=False):
     vf = (f"setpts=(PTS-STARTPTS)/{s['speed']},fps={FPS},"
           f"scale={W*2}:{H*2}:force_original_aspect_ratio=increase:flags=lanczos,crop={W*2}:{H*2},"
           f"zoompan=z='{z}':x='(iw-iw/zoom)*{fx}':y='(ih-ih/zoom)*{fy}':d=1:s={W}x{H}:fps={FPS},"
-          f"setsar=1,format=yuv420p")
+          f"eq=gamma=1.03:saturation=1.06,colorbalance=rm=0.03:bm=-0.02,setsar=1,format=yuv420p")
     tempo = f"atempo={s['speed']}," if s["speed"] != 1 else ""
     af = (f"asetpts=PTS-STARTPTS,{tempo}aresample=48000,aformat=channel_layouts=stereo,"
           f"loudnorm=I=-16:TP=-1.5:LRA=11,volume={NATURAL},"
@@ -173,10 +195,11 @@ def text_png(text, name):
 
 def build(version):
     plain = version == "notext"
-    shots, cards = [], []  # cards: (section, text, index of its first shot)
+    shots, cards = [], []  # cards: (name, text, doodles, index of its first shot)
     for sec in VERSIONS[version]:
-        sec_shots, text = SECTIONS[sec]
-        cards.append((sec, text, len(shots)))
+        sec_shots, sec_cards = SECTIONS[sec]
+        for j, (off, text, doodles) in enumerate(sec_cards):
+            cards.append((f"{sec}{j}", text, doodles, len(shots) + off))
         for i, s in enumerate(sec_shots):
             s = dict(s)
             if plain:
@@ -207,17 +230,20 @@ def build(version):
     total = t
 
     if not plain:
-        # each card lands on its section's first cut and leaves just before the next section
-        for n, (sec, text, first) in enumerate(cards):
+        # each card lands on its shot's cut, rises in softly and leaves just before the next card
+        for n, (name, text, doodles, first) in enumerate(cards):
             t0 = starts[first] + (XFADE.get(shots[first][2]["join"], 0) if first else 0)
-            t1 = (starts[cards[n + 1][2]] if n + 1 < len(cards) else total) - 0.05
-            assert t1 - t0 >= 1.5, (sec, t0, t1)
-            png = text_png(text, f"{version}_{sec}")
+            t1 = (starts[cards[n + 1][3]] if n + 1 < len(cards) else total) - 0.05
+            assert t1 - t0 >= 1.5, (name, t0, t1)
+            fmt = os.path.join(WORK, f"card_{version}_{name}_%d.png")
+            ugc_text.card(text, fmt, doodles)
             idx = len(shots) + n
-            inputs += ["-loop", "1", "-framerate", str(FPS), "-t", f"{total:.3f}", "-i", png]
-            graph.append(f"[{idx}:v]format=rgba,fade=t=in:st={t0:.3f}:d=0.2:alpha=1,"
-                         f"fade=t=out:st={t1 - 0.2:.3f}:d=0.2:alpha=1[t{n}]")
-            graph.append(f"[{vlast}][t{n}]overlay=0:0:enable='between(t,{t0:.3f},{t1:.3f})'[o{n}]")
+            # 3 doodle frames looped at 6 fps = a hand-drawn "boil" every 5 video frames
+            inputs += ["-framerate", "6", "-loop", "1", "-t", f"{total:.3f}", "-i", fmt]
+            graph.append(f"[{idx}:v]fps={FPS},format=rgba,fade=t=in:st={t0:.3f}:d=0.35:alpha=1,"
+                         f"fade=t=out:st={t1 - 0.3:.3f}:d=0.3:alpha=1[t{n}]")
+            rise = f"18*max(0,1-(t-{t0:.3f})/0.5)"
+            graph.append(f"[{vlast}][t{n}]overlay=0:'{rise}':enable='between(t,{t0:.3f},{t1:.3f})'[o{n}]")
             vlast = f"o{n}"
 
     graph.append(f"[{vlast}]format=yuv420p[vout]")
