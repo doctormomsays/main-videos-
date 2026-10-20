@@ -81,3 +81,16 @@ No /music, no /sfx.
   (profile; toward camera ~75–90, 107–119; walks to camera 209–213). Robot passes: small/far 25–52,
   foreground 173–178 (best), mid-floor 192–199, re-enters 214–216. Faceless fix: crop `574:1020:x:900`
   (feet + bench + floor), a 1.88x upscale; it looks fine. No cup+hands close-up exists.
+
+## Final edit (2026-10-20)
+Priya: use the **curtain** clips (IMG_3646–3650, same Drive folder, from the earlier Dyson curtain reel) for the
+Dyson job, and her **side profile is fine** in the coffee/robot clip (3678), so it stays wide and uncropped.
+Edit list + renderer: `scripts/weekend_reset.py` (all versions: `python3 scripts/weekend_reset.py`).
+Clips are symlinked into `clips/honestlyworthit/weekend_reset/` (gitignored). Outputs: `out/weekend_reset/`.
+
+hook 3678@172.5 push-in → fade → before 3597@25 (grimy burner) → slideleft → Dyson: 3646@59 curtain head,
+3648@11.5/20.5/37.5 at 1.5x (back views) → fade → INVISEL: 3600@8.3 can, 3607@151.5 foam, 3602@17 foam,
+3607@157 wipe 2x, 3607@146 → wiperight → 3607@272 (punch 115%), 3611@0 dirty cloth → fade → 3678@191.8 robot
+pass (drift + punch 115%) → fade → 3607@440 clean burner (pull-out), 3650@70 Dyson parked.
+Note: the before/after reveal shows the glass top cleaned (smears gone); rust marks on the burner base remain,
+so no text claims those came off. Natural sound only (no music/sfx supplied), loudnorm -16 then ×0.6.
