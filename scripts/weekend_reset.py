@@ -40,18 +40,16 @@ INVISEL = [
     shot("IMG_3600", 8.3, 1.6, join="fade", what="can set on the stove"),
     shot("IMG_3607", 151.5, 1.6, what="foam burst on the burner base"),
     shot("IMG_3602", 17.0, 1.5, what="foam on the burner ring"),
-    shot("IMG_3607", 157.0, 3.0, speed=2.0, what="wipe"),
-    shot("IMG_3607", 146.0, 1.2, what="before, same angle"),
-    shot("IMG_3607", 272.0, 2.4, join="wiperight", motion=[("punch", 0.7, 1.7, 1.15)],
-         anchor=(0.55, 0.45), what="after, same angle"),
+    shot("IMG_3607", 243.8, 3.0, speed=1.5, what="cloth wipes through the foam"),
+    shot("IMG_3607", 249.8, 3.0, speed=1.5, what="wiping round the burner"),
     shot("IMG_3611", 0.0, 2.0, what="dirty cloth"),
 ]
 RETURN = [shot("IMG_3678", 191.8, 6.0, join="fade",
                motion=[("push", 1.0, 1.03), ("punch", 2.6, 3.6, 1.15)], anchor=(0.6, 0.85),
                what="robot crosses the floor")]
 AFTER = [
-    shot("IMG_3607", 440.0, 3.0, join="fade", motion=[("push", 1.10, 1.0)], what="clean burner"),
-    shot("IMG_3650", 70.0, 3.0, motion=[("push", 1.0, 1.03)], what="Dyson parked, done"),
+    shot("IMG_3607", 445.0, 3.0, join="fade", what="clean burner (tripod-steady stretch)"),
+    shot("IMG_3649", 3.0, 3.5, motion=[("push", 1.10, 1.0)], anchor=(0.5, 1.0), what="Dyson resting under the curtains"),
 ]
 REVEAL_B = [
     shot("IMG_3607", 146.0, 1.0, what="before"),

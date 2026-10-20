@@ -94,3 +94,9 @@ hook 3678@172.5 push-in → fade → before 3597@25 (grimy burner) → slideleft
 pass (drift + punch 115%) → fade → 3607@440 clean burner (pull-out), 3650@70 Dyson parked.
 Note: the before/after reveal shows the glass top cleaned (smears gone); rust marks on the burner base remain,
 so no text claims those came off. Natural sound only (no music/sfx supplied), loudnorm -16 then ×0.6.
+
+### Revision 1 (main only, 2026-10-20)
+Priya's notes: better wipe after the foam; drop the stained-only clip after it; clean hob was shaky; last Dyson shot shaky.
+- Wipe: 3607@243.8 and @249.8 (1.5x, cloth through the foam). Removed the 146→272 before/after wipe pair.
+- Clean hob: 3607@445 (motion-measured steady stretch 444–456; @440 had camera shake), no zoom.
+- End: 3649@3 Dyson resting on the floor under the curtains (locked shot), pull-out anchored to the bottom.
